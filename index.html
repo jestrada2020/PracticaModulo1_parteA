@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Módulo 1 - Matemáticas en Producción Pecuaria</title>
+            <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.1);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .subtitle {
+            color: #64748b;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .objectives {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 25px;
+            margin-bottom: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.08);
+        }
+        
+        .objectives h2 {
+            color: #3b82f6;
+            margin-bottom: 18px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .objectives ul {
+            list-style-type: none;
+        }
+        
+        .objectives li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: #1e293b;
+        }
+        
+        .objectives li:before {
+            content: "✓";
+            color: #3b82f6;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+        
+        .module-explanation {
+            background: linear-gradient(135deg, #fef3c7 0%, rgba(254, 243, 199, 0.5) 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 25px;
+            margin-bottom: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.08);
+        }
+        
+        .module-explanation h2 {
+            color: #f59e0b;
+            margin-bottom: 18px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .module-explanation p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #1e293b;
+        }
+        
+        .exercise {
+            margin-bottom: 40px;
+            padding: 30px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background: linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+        }
+        
+        .exercise:hover {
+            border-color: #a5b4fc;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        .exercise h3 {
+            color: #6366f1;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            font-weight: 600;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #a5b4fc;
+        }
+        
+        .context, .data, .solution {
+            margin-bottom: 20px;
+            padding: 18px;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            border-left: 3px solid #10b981;
+        }
+        
+        .context strong, .data strong, .solution strong {
+            color: #10b981;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        
+        .questions {
+            margin-top: 20px;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding: 18px;
+            background-color: #fafbfc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .question p {
+            margin-bottom: 12px;
+            font-weight: 500;
+            color: #1e293b;
+        }
+        
+        .answer-input {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 1.05em;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .answer-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+            background-color: #ffffff;
+        }
+        
+        .button {
+            padding: 14px 32px;
+            font-size: 1.05em;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-reset {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(100, 116, 139, 0.3);
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 35px 0;
+        }
+        
+        .results {
+            background: linear-gradient(135deg, #d1fae5 0%, rgba(209, 250, 229, 0.5) 100%);
+            border-left: 4px solid #10b981;
+            padding: 30px;
+            margin-top: 35px;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+        }
+        
+        .score {
+            font-size: 2.5em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .score-pass {
+            color: #10b981;
+        }
+        
+        .score-fail {
+            color: #ef4444;
+        }
+        
+        .feedback {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 1.15em;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 2px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.95em;
+        }
+        
+        /* Estilos para MathJax/LaTeX */
+        .MathJax, .MathJax_Display {
+            font-size: 1.1em !important;
+        }
+        
+        mjx-container {
+            margin: 8px 0 !important;
+        }
+        
+        mjx-container[jax="CHTML"][display="true"] {
+            margin: 1em 0 !important;
+        }
+        
+        .math-inline {
+            color: #6366f1;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .button {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+    
+    <!-- MathJax para renderizado LaTeX profesional -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\(', '\)']],
+                displayMath: [['$$', '$$'], ['\[', '\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                packages: {'[+]': ['ams', 'newcommand', 'configmacros']}
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 1.1
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tecnología en Producción Pecuaria Sostenible</h1>
+            <div class="subtitle">Matemáticas - Práctica Módulo 1</div>
+            <div class="subtitle">Concepto Básico y Funcional de Matemática Aplicado a Sistemas Pecuarios</div>
+        </header>
+        
+        <div class="objectives">
+            <h2>Objetivos de Aprendizaje</h2>
+            <ul>
+                <li>Comprender los conceptos fundamentales de la matemática y su aplicación en contextos pecuarios</li>
+                <li>Identificar funciones matemáticas en procesos de producción animal</li>
+                <li>Aplicar conceptos básicos para resolver problemas reales en sistemas pecuarios sostenibles</li>
+                <li>Desarrollar habilidades de análisis cuantitativo en el contexto agropecuario</li>
+            </ul>
+        </div>
+        
+        <div class="module-explanation">
+            <h2>Explicación del Módulo</h2>
+            <p>Este módulo introduce los fundamentos esenciales de las matemáticas y su aplicación práctica en la producción pecuaria sostenible. La matemática es una ciencia que estudia las propiedades abstractas de los números, las estructuras, las relaciones y los patrones, proporcionando un lenguaje universal para cuantificar, analizar y resolver problemas.</p>
+            <p>En el contexto pecuario, comprender los conceptos básicos matemáticos es fundamental para optimizar recursos, calcular rendimientos, analizar datos productivos y tomar decisiones informadas. El módulo aborda el concepto de <span class="math">función matemática</span> como una relación entre variables que permite modelar fenómenos reales, como la relación entre la cantidad de alimento suministrado y el peso ganado por los animales, o entre el tiempo de gestación y el desarrollo fetal.</p>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 1: Funciones en el Crecimiento Animal</h3>
+            <div class="context">
+                <strong>Contexto:</strong> En una finca lechera, se ha observado que el peso de los terneros puede modelarse mediante una función matemática durante sus primeros 6 meses de vida.
+            </div>
+            <div class="data">
+                <strong>Datos:</strong>
+                <ul>
+                    <li>Peso al nacer: 40 kg</li>
+                    <li>Ganancia diaria promedio: 0.8 kg/día</li>
+                </ul>
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Exprese el peso del ternero como una función del tiempo (días).</p>
+                    <input type="text" class="answer-input" data-question="1a" placeholder="Ej: $P(t)$ = 40 + 0.8t">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> ¿Cuál será el peso del ternero a los 90 días?</p>
+                    <input type="text" class="answer-input" data-question="1b" placeholder="En kg">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> ¿En cuántos días alcanzará un peso de 100 kg?</p>
+                    <input type="text" class="answer-input" data-question="1c" placeholder="En días">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 2: Conjuntos Numéricos en Inventario Ganadero</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una finca ganadera mantiene registro de su inventario animal. Los conjuntos numéricos nos ayudan a clasificar y organizar esta información.
+            </div>
+            <div class="data">
+                <strong>Datos del inventario:</strong>
+                <ul>
+                    <li>Vacas lecheras: 45</li>
+                    <li>Terneros menores de 6 meses: 18</li>
+                    <li>Novillas de levante: 23</li>
+                    <li>Toros reproductores: 3</li>
+                </ul>
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿A qué conjunto numérico pertenecen estas cantidades?</p>
+                    <input type="text" class="answer-input" data-question="2a" placeholder="Ej: Números naturales">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si se venden 12 vacas y nacen 8 terneros, ¿cuál es el nuevo total?</p>
+                    <input type="text" class="answer-input" data-question="2b" placeholder="En animales">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Calcule el porcentaje que representa cada categoría del total.</p>
+                    <input type="text" class="answer-input" data-question="2c" placeholder="Ej: Vacas: 50.$56\%$">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 3: Producción de Huevos</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una granja avícola tiene 500 gallinas ponedoras. En promedio, cada gallina pone 0.85 huevos por día.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Formule una función que relacione la producción diaria de huevos con el número de días.</p>
+                    <input type="text" class="answer-input" data-question="3a" placeholder="Ej: H(d) = 425 + 0.85d">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> ¿Cuántos huevos se producirán en 30 días?</p>
+                    <input type="text" class="answer-input" data-question="3b" placeholder="En huevos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si se venden a $500 cada huevo, ¿cuál será el ingreso mensual?</p>
+                    <input type="text" class="answer-input" data-question="3c" placeholder="En pesos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 4: Consumo de Alimento Balanceado</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Un lote de 80 cerdos en etapa de engorde consume diariamente 3.2 kg de alimento balanceado por animal.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule el consumo total diario del lote.</p>
+                    <input type="text" class="answer-input" data-question="4a" placeholder="En kg">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si el ciclo de engorde dura 120 días, ¿cuánto alimento se consumirá en total?</p>
+                    <input type="text" class="answer-input" data-question="4b" placeholder="En kg">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> El alimento viene en bultos de 40 kg. ¿Cuántos bultos se necesitan para el ciclo completo?</p>
+                    <input type="text" class="answer-input" data-question="4c" placeholder="En bultos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 5: Área de Pastoreo</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una finca dedicada a la ganadería de pastoreo tiene un potrero rectangular de 250 metros de largo y 180 metros de ancho.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule el área total del potrero en metros cuadrados y en hectáreas.</p>
+                    <input type="text" class="answer-input" data-question="5a" placeholder="Ej: 45,000 $m^{2}$ = 4.5 ha">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si se requieren 2,500 $m^{2}$ por cada vaca para pastoreo sostenible, ¿cuántas vacas puede mantener el potrero?</p>
+                    <input type="text" class="answer-input" data-question="5b" placeholder="En vacas">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Se desea dividir el potrero en 4 secciones iguales. ¿Cuál será el área de cada sección?</p>
+                    <input type="text" class="answer-input" data-question="5c" placeholder="En $m^{2}$">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 6: Tasa de Natalidad</h3>
+            <div class="context">
+                <strong>Contexto:</strong> En un hato ganadero de 120 vacas, la tasa de natalidad anual es del $85\%$.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Cuántos terneros se esperan por año?</p>
+                    <input type="text" class="answer-input" data-question="6a" placeholder="En terneros">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si la mortalidad en terneros es del $5\%$, ¿cuántos sobrevivirán al destete?</p>
+                    <input type="text" class="answer-input" data-question="6b" placeholder="En terneros">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> ¿Qué porcentaje representa el número de terneros destetados del total del hato original?</p>
+                    <input type="text" class="answer-input" data-question="6c" placeholder="En porcentaje">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 7: Relación Costo-Beneficio</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una granja porcina invierte $45,000,000 en un ciclo de producción de 150 cerdos.
+            </div>
+            <div class="data">
+                <strong>Datos:</strong>
+                <ul>
+                    <li>Costo de alimentación por cerdo: $180,000</li>
+                    <li>Otros costos operativos: $12,000,000</li>
+                    <li>Precio de venta por cerdo: $450,000</li>
+                </ul>
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule el costo total de producción.</p>
+                    <input type="text" class="answer-input" data-question="7a" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Calcule los ingresos totales por venta.</p>
+                    <input type="text" class="answer-input" data-question="7b" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Determine la utilidad o pérdida.</p>
+                    <input type="text" class="answer-input" data-question="7c" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> Calcule el margen de utilidad como porcentaje.</p>
+                    <input type="text" class="answer-input" data-question="7d" placeholder="En porcentaje">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 8: Proporción de Minerales</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Un suplemento mineral para bovinos debe tener la siguiente composición:
+            </div>
+            <div class="data">
+                <ul>
+                    <li>Calcio: $15\%$</li>
+                    <li>Fósforo: $8\%$</li>
+                    <li>Magnesio: $3\%$</li>
+                    <li>Otros minerales: $74\%$</li>
+                </ul>
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Si se preparan 500 kg de suplemento, ¿cuántos kg de cada componente se necesitan?</p>
+                    <input type="text" class="answer-input" data-question="8a" placeholder="Ej: Calcio: 75 kg, Fósforo: 40 kg, etc.">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si cada vaca consume 100 g diarios, ¿para cuántos días alcanza la preparación de 500 kg para un hato de 80 vacas?</p>
+                    <input type="text" class="answer-input" data-question="8b" placeholder="En días">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> ¿Cuánto calcio consume cada vaca al día?</p>
+                    <input type="text" class="answer-input" data-question="8c" placeholder="En gramos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 9: Índice de Conversión Alimenticia</h3>
+            <div class="context">
+                <strong>Contexto:</strong> El índice de conversión alimenticia (ICA) mide la eficiencia con que los animales convierten el alimento en peso corporal.
+            </div>
+            <div class="data">
+                <strong>Datos de un lote de pollos de engorde:</strong>
+                <ul>
+                    <li>Peso inicial promedio: 45 g</li>
+                    <li>Peso final promedio: 2,450 g</li>
+                    <li>Consumo total de alimento por ave: 4,200 g</li>
+                </ul>
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule la ganancia de peso por ave.</p>
+                    <input type="text" class="answer-input" data-question="9a" placeholder="En gramos">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Calcule el ICA usando la fórmula: ICA = Alimento consumido / Ganancia de peso</p>
+                    <input type="text" class="answer-input" data-question="9b" placeholder="Valor numérico">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Interprete el resultado: ¿cuántos kg de alimento se requieren por cada kg de peso ganado?</p>
+                    <input type="text" class="answer-input" data-question="9c" placeholder="Ej: 1.71 kg alimento/kg peso">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 10: Programación de Vacunación</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Un veterinario debe vacunar un hato de 250 animales. Puede vacunar 35 animales por hora.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Formule una función que relacione el número de animales vacunados con el tiempo en horas.</p>
+                    <input type="text" class="answer-input" data-question="10a" placeholder="Ej: $V(t)$ = 35t">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> ¿Cuántas horas necesitará para vacunar todo el hato?</p>
+                    <input type="text" class="answer-input" data-question="10b" placeholder="En horas">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si trabaja 6 horas diarias, ¿en cuántos días completará la tarea?</p>
+                    <input type="text" class="answer-input" data-question="10c" placeholder="En días">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 11: Operaciones Básicas en Control de Inventarios</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una granja avícola realiza un control semanal de inventarios.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Inicio de semana: 1,245 pollos. Se venden 387 y nacen 156. Calcule el inventario final.</p>
+                    <input type="text" class="answer-input" data-question="11a" placeholder="En pollos">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si la mortalidad semanal fue de 23 aves, ¿cuál es el inventario real?</p>
+                    <input type="text" class="answer-input" data-question="11b" placeholder="En pollos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Se compraron 500 pollitos más. Calcule el total actualizado.</p>
+                    <input type="text" class="answer-input" data-question="11c" placeholder="En pollos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 12: Notación Científica en Poblaciones Microbianas</h3>
+            <div class="context">
+                <strong>Contexto:</strong> En un litro de leche cruda se pueden encontrar aproximadamente 45,000,000 de bacterias.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Exprese esta cantidad en notación científica.</p>
+                    <input type="text" class="answer-input" data-question="12a" placeholder="Ej: 4.$5 \times 10$⁷">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si el proceso de pasteurización reduce la población al 0.$01\%$, ¿cuántas bacterias quedan?</p>
+                    <input type="text" class="answer-input" data-question="12b" placeholder="En notación científica">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Un tanque contiene 2,500 litros. ¿Cuál es la población bacteriana total?</p>
+                    <input type="text" class="answer-input" data-question="12c" placeholder="En notación científica">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 13: Funciones Lineales en Costos de Producción</h3>
+            <div class="context">
+                <strong>Contexto:</strong> El costo total de alimentación en una granja porcina se modela según la función: $C(x)$ = 125,000 + 45,000x donde x es el número de cerdos y C es el costo en pesos.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Qué representa el valor 125,000 en el contexto del problema?</p>
+                    <input type="text" class="answer-input" data-question="13a" placeholder="Descripción">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> ¿Qué representa el valor 45,000?</p>
+                    <input type="text" class="answer-input" data-question="13b" placeholder="Descripción">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Calcule el costo para 80 cerdos.</p>
+                    <input type="text" class="answer-input" data-question="13c" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> Si el presupuesto es de $5,000,000, ¿cuántos cerdos se pueden mantener?</p>
+                    <input type="text" class="answer-input" data-question="13d" placeholder="En cerdos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 14: Relaciones y Proporciones Básicas</h3>
+            <div class="context">
+                <strong>Contexto:</strong> En una finca lechera se producen 450 litros de leche diariamente con 30 vacas en ordeño.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule la producción promedio por vaca.</p>
+                    <input type="text" class="answer-input" data-question="14a" placeholder="En litros/vaca">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si se agregan 5 vacas más con la misma productividad, ¿cuál será la producción total?</p>
+                    <input type="text" class="answer-input" data-question="14b" placeholder="En litros">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Exprese la relación entre número de vacas y litros producidos como una función.</p>
+                    <input type="text" class="answer-input" data-question="14c" placeholder="Ej: L(v) = 15v">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> ¿Cuántas vacas se necesitan para producir 750 litros diarios?</p>
+                    <input type="text" class="answer-input" data-question="14d" placeholder="En vacas">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 15: Análisis de Datos Productivos</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Un lote de 120 gallinas ponedoras registró la siguiente producción semanal:
+            </div>
+            <div class="data">
+                <ul>
+                    <li>Lunes: 95 huevos</li>
+                    <li>Martes: 102 huevos</li>
+                    <li>Miércoles: 98 huevos</li>
+                    <li>Jueves: 105 huevos</li>
+                    <li>Viernes: 101 huevos</li>
+                    <li>Sábado: 97 huevos</li>
+                    <li>Domingo: 94 huevos</li>
+                </ul>
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule la producción total semanal.</p>
+                    <input type="text" class="answer-input" data-question="15a" placeholder="En huevos">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Calcule la producción promedio diaria.</p>
+                    <input type="text" class="answer-input" data-question="15b" placeholder="En huevos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Determine el porcentaje de postura promedio (huevos/gallinas/día × 100).</p>
+                    <input type="text" class="answer-input" data-question="15c" placeholder="En porcentaje">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> Si cada huevo pesa en promedio 58 gramos, ¿cuál es la masa total de huevos producidos en la semana?</p>
+                    <input type="text" class="answer-input" data-question="15d" placeholder="En gramos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 16: Matemática Financiera Básica - Valor Presente</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Un productor pecuario debe elegir entre dos opciones de inversión:
+            </div>
+            <div class="data">
+                <strong>Opción A:</strong> Comprar 10 novillas a $2,500,000 cada una hoy.<br>
+                <strong>Opción B:</strong> Comprar 12 novillas dentro de 6 meses a $2,300,000 cada una.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule el costo total de cada opción.</p>
+                    <input type="text" class="answer-input" data-question="16a" placeholder="Opción A y Opción B en pesos">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si el dinero puede ganar un $12\%$ anual en el banco, ¿cuál es el valor presente de la opción B?</p>
+                    <input type="text" class="answer-input" data-question="16b" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> ¿Qué opción es financieramente más conveniente?</p>
+                    <input type="text" class="answer-input" data-question="16c" placeholder="Opción A u Opción B">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 17: Geometría Aplicada - Diseño de Corrales</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Se desea construir un corral circular para manejo de ganado con un área de 314 $m^{2}$.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule el radio del corral (use π = 3.14).</p>
+                    <input type="text" class="answer-input" data-question="17a" placeholder="En metros">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Calcule el perímetro (longitud de cerca necesaria).</p>
+                    <input type="text" class="answer-input" data-question="17b" placeholder="En metros">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si se quiere duplicar el área, ¿cuál debe ser el nuevo radio?</p>
+                    <input type="text" class="answer-input" data-question="17c" placeholder="En metros">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> Compare el perímetro del corral original con el de área duplicada.</p>
+                    <input type="text" class="answer-input" data-question="17d" placeholder="Descripción de la comparación">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 18: Conjuntos Numéricos en Genética</h3>
+            <div class="context">
+                <strong>Contexto:</strong> En un programa de mejoramiento genético bovino:
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> El número de animales en el programa es 245. ¿A qué conjunto numérico pertenece?</p>
+                    <input type="text" class="answer-input" data-question="18a" placeholder="Ej: Números naturales">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> La ganancia genética esperada es de 0.85 kg/generación. ¿A qué conjunto pertenece?</p>
+                    <input type="text" class="answer-input" data-question="18b" placeholder="Ej: Números racionales">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> El coeficiente de heredabilidad es h² = 0.35. ¿Qué tipo de número es?</p>
+                    <input type="text" class="answer-input" data-question="18c" placeholder="Ej: Número racional">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> Si se calcula $\sqrt{245}$ para determinar el número efectivo de reproductores, ¿a qué conjunto pertenece el resultado?</p>
+                    <input type="text" class="answer-input" data-question="18d" placeholder="Ej: Número irracional">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 19: Cálculo de Ración Alimenticia</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una finca tiene 60 vacas lecheras que requieren 2.$5\%$ de su peso corporal en alimento balanceado diario. El peso promedio de las vacas es de 550 kg.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Cuál es el requerimiento diario de alimento por vaca?</p>
+                    <input type="text" class="answer-input" data-question="19a" placeholder="En kg">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> ¿Cuál es el consumo total diario del lote?</p>
+                    <input type="text" class="answer-input" data-question="19b" placeholder="En kg">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si el alimento cuesta $1,200 por bolsa de 50 kg, ¿cuál es el costo diario de alimentación?</p>
+                    <input type="text" class="answer-input" data-question="19c" placeholder="En pesos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 20: Análisis de Rentabilidad</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una granja avícola produce 12,000 huevos semanales con 300 gallinas. El costo de producción semanal es de $800,000 y los huevos se venden a $80 cada uno.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule los ingresos semanales por venta de huevos.</p>
+                    <input type="text" class="answer-input" data-question="20a" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Determine la utilidad semanal.</p>
+                    <input type="text" class="answer-input" data-question="20b" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Calcule el margen de utilidad como porcentaje.</p>
+                    <input type="text" class="answer-input" data-question="20c" placeholder="En porcentaje">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> ¿Cuál es el costo por huevo producido?</p>
+                    <input type="text" class="answer-input" data-question="20d" placeholder="En pesos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 21: Cálculo de Dosis de Medicamento</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Un veterinario debe administrar un antibiótico a un lote de 80 cerdos. La dosis recomendada es de 10 mg por kg de peso corporal. El peso promedio de los cerdos es de 60 kg.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Cuál es la dosis por cerdo?</p>
+                    <input type="text" class="answer-input" data-question="21a" placeholder="En mg">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> ¿Cuál es la dosis total para el lote?</p>
+                    <input type="text" class="answer-input" data-question="21b" placeholder="En mg">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si el medicamento viene en viales de 500 mg, ¿cuántos viales se necesitan?</p>
+                    <input type="text" class="answer-input" data-question="21c" placeholder="En viales">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 22: Estadísticas de Producción</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una finca lechera registró la producción diaria de leche durante una semana:
+            </div>
+            <div class="data">
+                <ul>
+                    <li>Lunes: 420 L</li>
+                    <li>Martes: 435 L</li>
+                    <li>Miércoles: 410 L</li>
+                    <li>Jueves: 445 L</li>
+                    <li>Viernes: 430 L</li>
+                    <li>Sábado: 425 L</li>
+                    <li>Domingo: 415 L</li>
+                </ul>
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule la producción total semanal.</p>
+                    <input type="text" class="answer-input" data-question="22a" placeholder="En litros">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Calcule la producción promedio diaria.</p>
+                    <input type="text" class="answer-input" data-question="22b" placeholder="En litros">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Determine la desviación estándar de la producción diaria.</p>
+                    <input type="text" class="answer-input" data-question="22c" placeholder="En litros">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> ¿Cuál fue el día de mayor producción?</p>
+                    <input type="text" class="answer-input" data-question="22d" placeholder="Día de la semana">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 23: Cálculo de Eficiencia Reproductiva</h3>
+            <div class="context">
+                <strong>Contexto:</strong> En un hato de 100 vacas, 85 quedaron preñadas en el primer servicio.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> Calcule el porcentaje de concepción.</p>
+                    <input type="text" class="answer-input" data-question="23a" placeholder="En porcentaje">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si el período de gestación es de 283 días, ¿cuál es la fecha esperada de parto para las vacas preñadas?</p>
+                    <input type="text" class="answer-input" data-question="23b" placeholder="Fecha (dd/mm/yyyy)">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si se espera una mortalidad del $5\%$ en los terneros, ¿cuántos terneros se espera obtener?</p>
+                    <input type="text" class="answer-input" data-question="23c" placeholder="En terneros">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 24: Análisis de Costos de Enfermedades</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una enfermedad afectó $15\%$ del lote de 200 cerdos en engorde. El tratamiento cuesta $50,000 por cerdo y reduce las pérdidas en $80\%$.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Cuántos cerdos se vieron afectados?</p>
+                    <input type="text" class="answer-input" data-question="24a" placeholder="En cerdos">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> ¿Cuál es el costo total del tratamiento?</p>
+                    <input type="text" class="answer-input" data-question="24b" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si sin tratamiento se habrían perdido 30 cerdos, ¿cuántos se salvaron gracias al tratamiento?</p>
+                    <input type="text" class="answer-input" data-question="24c" placeholder="En cerdos">
+                </div>
+                <div class="question">
+                    <p><strong>d)</strong> ¿Cuál es el beneficio neto del tratamiento?</p>
+                    <input type="text" class="answer-input" data-question="24d" placeholder="En pesos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 25: Cálculo de Rendimiento de Forraje</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Un potrero de 5 ha produce 8,000 kg de forraje seco por hectárea al año.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Cuál es la producción total de forraje seco anual?</p>
+                    <input type="text" class="answer-input" data-question="25a" placeholder="En kg">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si cada vaca consume 2,000 kg de forraje seco al año, ¿cuántas vacas puede mantener el potrero?</p>
+                    <input type="text" class="answer-input" data-question="25b" placeholder="En vacas">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si se desea aumentar la producción en $20\%$, ¿cuál sería la nueva capacidad de carga?</p>
+                    <input type="text" class="answer-input" data-question="25c" placeholder="En vacas">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 26: Análisis de Inversión en Tecnología</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una granja invierte $2,000,000 en un sistema de automatización que reduce costos operativos en $300,000 anuales.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Cuál es el tiempo de recuperación de la inversión?</p>
+                    <input type="text" class="answer-input" data-question="26a" placeholder="En años">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si la vida útil del equipo es de 8 años, ¿cuál es la ganancia neta total?</p>
+                    <input type="text" class="answer-input" data-question="26b" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Calcule la tasa de retorno anual.</p>
+                    <input type="text" class="answer-input" data-question="26c" placeholder="En porcentaje">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 27: Cálculo de Dosis de Vacuna</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una vacuna requiere 2 ml por animal. Un veterinario debe vacunar 250 animales con jeringas de 10 ml.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Cuál es el volumen total de vacuna requerido?</p>
+                    <input type="text" class="answer-input" data-question="27a" placeholder="En ml">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> ¿Cuántas jeringadas se necesitan?</p>
+                    <input type="text" class="answer-input" data-question="27b" placeholder="En jeringadas">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si cada jeringa cuesta $500, ¿cuál es el costo total de las jeringas?</p>
+                    <input type="text" class="answer-input" data-question="27c" placeholder="En pesos">
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3>Ejercicio 28: Análisis de Eficiencia Energética</h3>
+            <div class="context">
+                <strong>Contexto:</strong> Una granja usa 1,200 kWh mensuales para iluminación y ventilación. Se instala un sistema de energía solar que reduce el consumo en $60\%$.
+            </div>
+            <div class="questions">
+                <div class="question">
+                    <p><strong>a)</strong> ¿Cuál es el ahorro mensual en kWh?</p>
+                    <input type="text" class="answer-input" data-question="28a" placeholder="En kWh">
+                </div>
+                <div class="question">
+                    <p><strong>b)</strong> Si el costo de la electricidad es $300 por kWh, ¿cuál es el ahorro mensual en pesos?</p>
+                    <input type="text" class="answer-input" data-question="28b" placeholder="En pesos">
+                </div>
+                <div class="question">
+                    <p><strong>c)</strong> Si el sistema solar cuesta $1,500,000, ¿en cuántos meses se recuperará la inversión?</p>
+                    <input type="text" class="answer-input" data-question="28c" placeholder="En meses">
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="btn btn-submit" onclick="calcularPuntuacion()">Calcular Puntuación</button>
+            <button class="btn btn-reset" onclick="resetForm()">Reiniciar Evaluación</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score" id="score">Puntuación: <span id="puntuacion-final">0</span>/50</div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Matemáticas para Producción Pecuaria Sostenible</p>
+            <p>Todos los ejercicios deben resolverse mostrando el procedimiento completo</p>
+        </div>
+    </div>
+
+    <script>
+        // Respuestas correctas y su valor en puntos
+        const respuestasCorrectas = {
+            '1a': { valor: '$P(t)$ = 40 + 0.8t', puntos: 2 },
+            '1b': { valor: '112', puntos: 2 },
+            '1c': { valor: '75', puntos: 2 },
+            '2a': { valor: 'números naturales', puntos: 2 },
+            '2b': { valor: '85', puntos: 2 },
+            '2c': { valor: '50.$56\%$', puntos: 2 },
+            '3a': { valor: 'H(d) = 425 + 0.85d', puntos: 2 },
+            '3b': { valor: '12825', puntos: 2 },
+            '3c': { valor: '6412500', puntos: 2 },
+            '4a': { valor: '256', puntos: 2 },
+            '4b': { valor: '30720', puntos: 2 },
+            '4c': { valor: '768', puntos: 2 },
+            '5a': { valor: '45000 $m^{2}$ = 4.5 ha', puntos: 2 },
+            '5b': { valor: '18', puntos: 2 },
+            '5c': { valor: '11250', puntos: 2 },
+            '6a': { valor: '102', puntos: 2 },
+            '6b': { valor: '97', puntos: 2 },
+            '6c': { valor: '80.$83\%$', puntos: 2 },
+            '7a': { valor: '39900000', puntos: 2 },
+            '7b': { valor: '67500000', puntos: 2 },
+            '7c': { valor: '27600000', puntos: 2 },
+            '7d': { valor: '68.$89\%$', puntos: 2 },
+            '8a': { valor: 'Calcio: 75 kg, Fósforo: 40 kg, Magnesio: 15 kg, Otros: 370 kg', puntos: 2 },
+            '8b': { valor: '62.5', puntos: 2 },
+            '8c': { valor: '15', puntos: 2 },
+            '9a': { valor: '2405', puntos: 2 },
+            '9b': { valor: '1.75', puntos: 2 },
+            '9c': { valor: '1.75 kg alimento/kg peso', puntos: 2 },
+            '10a': { valor: '$V(t)$ = 35t', puntos: 2 },
+            '10b': { valor: '7.14', puntos: 2 },
+            '10c': { valor: '1.19', puntos: 2 },
+            '11a': { valor: '1014', puntos: 2 },
+            '11b': { valor: '991', puntos: 2 },
+            '11c': { valor: '1491', puntos: 2 },
+            '12a': { valor: '4.$5 \times 10$⁷', puntos: 2 },
+            '12b': { valor: '4.$5 \times 10$³', puntos: 2 },
+            '12c': { valor: '1.$125 \times 10$¹¹', puntos: 2 },
+            '13a': { valor: 'costo fijo', puntos: 2 },
+            '13b': { valor: 'costo variable por cerdo', puntos: 2 },
+            '13c': { valor: '3725000', puntos: 2 },
+            '13d': { valor: '108', puntos: 2 },
+            '14a': { valor: '15', puntos: 2 },
+            '14b': { valor: '525', puntos: 2 },
+            '14c': { valor: 'L(v) = 15v', puntos: 2 },
+            '14d': { valor: '50', puntos: 2 },
+            '15a': { valor: '692', puntos: 2 },
+            '15b': { valor: '98.86', puntos: 2 },
+            '15c': { valor: '82.$38\%$', puntos: 2 },
+            '15d': { valor: '40136', puntos: 2 },
+            '16a': { valor: 'Opción A: 25000000, Opción B: 27600000', puntos: 2 },
+            '16b': { valor: '26142857', puntos: 2 },
+            '16c': { valor: 'Opción A', puntos: 2 },
+            '17a': { valor: '10', puntos: 2 },
+            '17b': { valor: '62.8', puntos: 2 },
+            '17c': { valor: '14.14', puntos: 2 },
+            '17d': { valor: 'El perímetro aumenta en 28.28 metros', puntos: 2 },
+            '18a': { valor: 'números naturales', puntos: 2 },
+            '18b': { valor: 'números racionales', puntos: 2 },
+            '18c': { valor: 'número racional', puntos: 2 },
+            '18d': { valor: 'número irracional', puntos: 2 },
+            '19a': { valor: '13.75', puntos: 2 },
+            '19b': { valor: '825', puntos: 2 },
+            '19c': { valor: '19800', puntos: 2 },
+            '20a': { valor: '960000', puntos: 2 },
+            '20b': { valor: '160000', puntos: 2 },
+            '20c': { valor: '16.$67\%$', puntos: 2 },
+            '20d': { valor: '66.67', puntos: 2 },
+            '21a': { valor: '600', puntos: 2 },
+            '21b': { valor: '48000', puntos: 2 },
+            '21c': { valor: '96', puntos: 2 },
+            '22a': { valor: '2980', puntos: 2 },
+            '22b': { valor: '425.71', puntos: 2 },
+            '22c': { valor: '11.79', puntos: 2 },
+            '22d': { valor: 'Jueves', puntos: 2 },
+            '23a': { valor: '$85\%$', puntos: 2 },
+            '23b': { valor: 'fecha actual + 283 días', puntos: 2 },
+            '23c': { valor: '80.75', puntos: 2 },
+            '24a': { valor: '30', puntos: 2 },
+            '24b': { valor: '1500000', puntos: 2 },
+            '24c': { valor: '24', puntos: 2 },
+            '24d': { valor: '720000', puntos: 2 },
+            '25a': { valor: '40000', puntos: 2 },
+            '25b': { valor: '20', puntos: 2 },
+            '25c': { valor: '24', puntos: 2 },
+            '26a': { valor: '6.67', puntos: 2 },
+            '26b': { valor: '1400000', puntos: 2 },
+            '26c': { valor: '17.$5\%$', puntos: 2 },
+            '27a': { valor: '500', puntos: 2 },
+            '27b': { valor: '50', puntos: 2 },
+            '27c': { valor: '25000', puntos: 2 },
+            '28a': { valor: '720', puntos: 2 },
+            '28b': { valor: '216000', puntos: 2 },
+            '28c': { valor: '6.94', puntos: 2 }
+        };
+
+        function calcularPuntuacion() {
+            let puntuacionTotal = 0;
+            let respuestasUsuario = {};
+            
+            // Obtener todas las respuestas del usuario
+            const inputs = document.querySelectorAll('.answer-input');
+            inputs.forEach(input => {
+                const questionId = input.dataset.question;
+                const userAnswer = input.value.trim().toLowerCase();
+                respuestasUsuario[questionId] = userAnswer;
+                
+                // Verificar si la respuesta es correcta
+                if (respuestasCorrectas[questionId]) {
+                    const correctAnswer = respuestasCorrectas[questionId].valor.toLowerCase();
+                    if (userAnswer === correctAnswer || 
+                        (userAnswer.includes(correctAnswer) && userAnswer.length > 0) ||
+                        (correctAnswer.includes(userAnswer) && correctAnswer.length > 0)) {
+                        puntuacionTotal += respuestasCorrectas[questionId].puntos;
+                    }
+                }
+            });
+            
+            // Mostrar resultados
+            const resultsDiv = document.getElementById('results');
+            const scoreSpan = document.getElementById('puntuacion-final');
+            const feedbackDiv = document.getElementById('feedback');
+            
+            scoreSpan.textContent = puntuacionTotal;
+            resultsDiv.style.display = 'block';
+            
+            // Calcular nota final (50 puntos = 5.0)
+            const notaFinal = (puntuacionTotal / 50) * 5.0;
+            
+            if (puntuacionTotal >= 40) {
+                feedbackDiv.innerHTML = `¡Excelente! Nota final: <strong>${notaFinal.toFixed(2)}</strong>/5.0. Has demostrado un excelente dominio de los conceptos matemáticos aplicados a la producción pecuaria.`;
+                scoreSpan.className = 'score score-pass';
+            } else if (puntuacionTotal >= 30) {
+                feedbackDiv.innerHTML = `Buen trabajo! Nota final: <strong>${notaFinal.toFixed(2)}</strong>/5.0. Sigue practicando para mejorar tu dominio de los conceptos.`;
+                scoreSpan.className = 'score score-pass';
+            } else if (puntuacionTotal >= 20) {
+                feedbackDiv.innerHTML = `Necesitas más práctica. Nota final: <strong>${notaFinal.toFixed(2)}</strong>/5.0. Revisa los conceptos y vuelve a intentarlo.`;
+                scoreSpan.className = 'score score-fail';
+            } else {
+                feedbackDiv.innerHTML = `Necesitas estudiar más. Nota final: <strong>${notaFinal.toFixed(2)}</strong>/5.0. Consulta con tu docente para aclarar dudas.`;
+                scoreSpan.className = 'score score-fail';
+            }
+            
+            // Desplazarse a los resultados
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            const inputs = document.querySelectorAll('.answer-input');
+            inputs.forEach(input => {
+                input.value = '';
+            });
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'none';
+            
+            // Desplazarse al inicio
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Permitir calcular puntuación con Enter
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('answer-input')) {
+                calcularPuntuacion();
+            }
+        });
+    </script>
+</body>
+</html>
