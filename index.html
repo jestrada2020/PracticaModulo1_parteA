@@ -225,6 +225,94 @@
             text-align: center;
             margin: 35px 0;
         }
+
+        .btn-pdf {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Modal para visualizar PDF */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #ffffff;
+            margin: 2% auto;
+            padding: 0;
+            width: 90%;
+            height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .close {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+            padding: 0 10px;
+        }
+
+        .close:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: calc(100% - 70px);
+            border: none;
+        }
         
         .results {
             background: linear-gradient(135deg, #d1fae5 0%, rgba(209, 250, 229, 0.5) 100%);
@@ -338,7 +426,11 @@
             <div class="subtitle">Matemáticas - Práctica Módulo 1</div>
             <div class="subtitle">Concepto Básico y Funcional de Matemática Aplicado a Sistemas Pecuarios</div>
         </header>
-        
+
+        <div style="text-align: center; margin: 25px 0;">
+            <button class="button btn-pdf" onclick="abrirPDF()">📄 Ver Documento de Práctica (PDF)</button>
+        </div>
+
         <div class="objectives">
             <h2>Objetivos de Aprendizaje</h2>
             <ul>
@@ -1046,8 +1138,8 @@
         </div>
         
         <div style="text-align: center; margin: 30px 0;">
-            <button class="btn btn-submit" onclick="calcularPuntuacion()">Calcular Puntuación</button>
-            <button class="btn btn-reset" onclick="resetForm()">Reiniciar Evaluación</button>
+            <button class="button btn-submit" onclick="calcularPuntuacion()">Calcular Puntuación</button>
+            <button class="button btn-reset" onclick="resetForm()">Reiniciar Evaluación</button>
         </div>
         
         <div class="results" id="results">
@@ -1058,6 +1150,17 @@
         <div class="footer">
             <p>Matemáticas para Producción Pecuaria Sostenible</p>
             <p>Todos los ejercicios deben resolverse mostrando el procedimiento completo</p>
+        </div>
+    </div>
+
+    <!-- Modal para PDF -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Práctica Módulo 1 - Conceptos Básicos de Matemática</h2>
+                <span class="close" onclick="cerrarPDF()">&times;</span>
+            </div>
+            <iframe id="pdfFrame" class="pdf-container" src="" type="application/pdf"></iframe>
         </div>
     </div>
 
@@ -1227,6 +1330,38 @@
         document.addEventListener('keypress', function(e) {
             if (e.key === 'Enter' && e.target.classList.contains('answer-input')) {
                 calcularPuntuacion();
+            }
+        });
+
+        // Funciones para el modal del PDF
+        function abrirPDF() {
+            const modal = document.getElementById('pdfModal');
+            const pdfFrame = document.getElementById('pdfFrame');
+            pdfFrame.src = 'Practica_Modulo1_Conceptos_Basicos_Matematica.pdf';
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Evitar scroll del body
+        }
+
+        function cerrarPDF() {
+            const modal = document.getElementById('pdfModal');
+            const pdfFrame = document.getElementById('pdfFrame');
+            modal.style.display = 'none';
+            pdfFrame.src = ''; // Limpiar el src para detener la carga
+            document.body.style.overflow = 'auto'; // Restaurar scroll del body
+        }
+
+        // Cerrar modal al hacer clic fuera del contenido
+        window.onclick = function(event) {
+            const modal = document.getElementById('pdfModal');
+            if (event.target === modal) {
+                cerrarPDF();
+            }
+        }
+
+        // Cerrar modal con la tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                cerrarPDF();
             }
         });
     </script>
